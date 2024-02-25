@@ -17,14 +17,14 @@ import {
 import { CgFileDocument } from "react-icons/cg";
 
 function NavBar() {
-  const [expand, updateExpanded] = useState(false);
-  const [navColour, updateNavbar] = useState(false);
+  const [expand, setExpanded] = useState(false);
+  const [navColour, setNavColour] = useState(false);
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
-      updateNavbar(true);
+      setNavColour(true);
     } else {
-      updateNavbar(false);
+      setNavColour(false);
     }
   }
 
@@ -41,29 +41,31 @@ function NavBar() {
         <Navbar.Brand href="/" className="d-flex">
           <img src={logo} className="img-fluid logo" alt="brand" />
         </Navbar.Brand>
+
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => {
-            updateExpanded(expand ? false : "expanded");
+            setExpanded(expand ? false : "expanded");
           }}
         >
           <span></span>
           <span></span>
           <span></span>
         </Navbar.Toggle>
+        
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
-              <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
+              <Nav.Link as={Link} to="#home" onClick={() => setExpanded(false)}>
                 <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
-                as={Link}
-                to="/about"
-                onClick={() => updateExpanded(false)}
+                
+                href="#about"
+                onClick={() => setExpanded(false)}
               >
                 <AiOutlineUser style={{ marginBottom: "2px" }} /> About
               </Nav.Link>
@@ -71,9 +73,9 @@ function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                as={Link}
-                to="/project"
-                onClick={() => updateExpanded(false)}
+                
+                href="#projects"
+                onClick={() => setExpanded(false)}
               >
                 <AiOutlineFundProjectionScreen
                   style={{ marginBottom: "2px" }}
@@ -84,15 +86,19 @@ function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                as={Link}
-                to="/resume"
-                onClick={() => updateExpanded(false)}
+                href="#resume"
+                
+                onClick={() => setExpanded(false)}
               >
                 <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
               </Nav.Link>
+
+              {/* <a href="#resume"><CgFileDocument style={{ marginBottom: "2px" }} /> Resume</a> */}
+
+
             </Nav.Item>
 
-            <Nav.Item>
+            {/* <Nav.Item>
               <Nav.Link
                 href="https://soumyajitblogs.vercel.app/"
                 target="_blank"
@@ -100,9 +106,9 @@ function NavBar() {
               >
                 <ImBlog style={{ marginBottom: "2px" }} /> Blogs
               </Nav.Link>
-            </Nav.Item>
+            </Nav.Item> */}
 
-            <Nav.Item className="fork-btn">
+            {/* <Nav.Item className="fork-btn">
               <Button
                 href="https://github.com/soumyajit4419/Portfolio"
                 target="_blank"
@@ -111,9 +117,10 @@ function NavBar() {
                 <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
                 <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
-            </Nav.Item>
+            </Nav.Item> */}
           </Nav>
         </Navbar.Collapse>
+
       </Container>
     </Navbar>
   );
